@@ -1,6 +1,6 @@
 'use strict';
 
-/*ngInject*/
+/* @ngInject */
 function ControllerMain($scope)
 {
     $scope.title = 'Main';

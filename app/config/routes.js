@@ -7,15 +7,25 @@ function routesConfig($urlRouterProvider, stateHelperProvider)
         .state({
             name: 'main',
             url: '/',
-            template: 'merda',
-            controller: function($scope)
-            {
-                $scope.title = 'asdf';
-            },
+            templateUrl: 'app/components/main/main.html',
+            controller: 'ControllerMain',
+            resolve: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
+                var deferred = $q.defer();
+
+                require.ensure([], function () {
+                    var mod = require('../components/main');
+                    $ocLazyLoad.load({
+                        name: mod.name
+                    });
+                    deferred.resolve(mod.controller);
+                });
+
+                return deferred.promise;
+            }],
             children: [
                 {
                     name: 'mori',
-                    url:'/mori',
+                    url:'mori',
                     templateUrl: 'app/components/mori/mori.html',
                     controller: 'ControllerMori',
                     resolve: ['$q', '$ocLazyLoad', function($q, $ocLazyLoad)
@@ -35,8 +45,8 @@ function routesConfig($urlRouterProvider, stateHelperProvider)
                 },
                 {
                     name: 'jara',
-                    url:'/jara',
-                    templateUrl: 'app/components/mori/jara.html',
+                    url:'jara',
+                    templateUrl: 'app/components/jara/jara.html',
                     controller: 'ControllerJara',
                     resolve: ['$q', '$ocLazyLoad', function($q, $ocLazyLoad)
                     {
@@ -55,8 +65,8 @@ function routesConfig($urlRouterProvider, stateHelperProvider)
                 },
                 {
                     name: 'roso',
-                    url:'/roso',
-                    templateUrl: 'app/components/mori/roso.html',
+                    url:'roso',
+                    templateUrl: 'app/components/roso/roso.html',
                     controller: 'ControllerRoso',
                     resolve: ['$q', '$ocLazyLoad', function($q, $ocLazyLoad)
                     {
@@ -75,8 +85,8 @@ function routesConfig($urlRouterProvider, stateHelperProvider)
                 },
                 {
                     name: '404',
-                    url:'/404',
-                    templateUrl: 'app/components/mori/404.html',
+                    url:'404',
+                    templateUrl: 'app/components/404/404.html',
                     controller: 'ControllerNotFound',
                     resolve: ['$q', '$ocLazyLoad', function($q, $ocLazyLoad)
                     {
@@ -96,7 +106,7 @@ function routesConfig($urlRouterProvider, stateHelperProvider)
             ]
         });
 
-    $urlRouterProvider.otherwise('/404');
+    $urlRouterProvider.otherwise('404');
 }
 
 module.exports = routesConfig;
