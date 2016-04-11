@@ -7,22 +7,11 @@ function routesConfig($urlRouterProvider, stateHelperProvider)
         .state({
             name: 'main',
             url: '/',
-            abstract: true,
-            templateUrl: 'app/components/main/main.html',
-            controller: 'ControllerMain',
-            resolve: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
-                var deferred = $q.defer();
-
-                require.ensure([], function () {
-                    var mod = require('../components/main');
-                    $ocLazyLoad.load({
-                        name: mod.name
-                    });
-                    deferred.resolve(mod.controller);
-                });
-
-                return deferred.promise;
-            }],
+            template: 'merda',
+            controller: function($scope)
+            {
+                $scope.title = 'asdf';
+            },
             children: [
                 {
                     name: 'mori',

@@ -25,14 +25,15 @@ gulp.task('build:Vendor', function(done)
 gulp.task('clean:Dist', function ()
 {
     return del([
-        '../../dist/js/*.js',
-        '!../../dist/js/vendor*'
+        './dist/js/*.js',
+        './dist/js/*.js.*',
+        './dist/js/*.json',
+        '!./dist/js/vendor*'
     ]);
 });
 
 gulp.task('build:Index', ['build:App'], function ()
 {
-    console.log('DIRNAME', __dirname);
     var target = gulp.src('./app/index.html');
     var sources = gulp.src([
         './dist/js/vendor*.js',
