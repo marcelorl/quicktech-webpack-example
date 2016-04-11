@@ -8,7 +8,7 @@ function routesConfig($urlRouterProvider, stateHelperProvider)
             name: 'main',
             url: '/',
             abstract: true,
-            templateUrl: 'components/main/main.html',
+            templateUrl: 'app/components/main/main.html',
             controller: 'ControllerMain',
             resolve: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
                 var deferred = $q.defer();
@@ -27,7 +27,7 @@ function routesConfig($urlRouterProvider, stateHelperProvider)
                 {
                     name: 'mori',
                     url:'/mori',
-                    templateUrl: 'components/mori/mori.html',
+                    templateUrl: 'app/components/mori/mori.html',
                     controller: 'ControllerMori',
                     resolve: ['$q', '$ocLazyLoad', function($q, $ocLazyLoad)
                     {
@@ -47,7 +47,7 @@ function routesConfig($urlRouterProvider, stateHelperProvider)
                 {
                     name: 'jara',
                     url:'/jara',
-                    templateUrl: 'components/mori/jara.html',
+                    templateUrl: 'app/components/mori/jara.html',
                     controller: 'ControllerJara',
                     resolve: ['$q', '$ocLazyLoad', function($q, $ocLazyLoad)
                     {
@@ -67,7 +67,7 @@ function routesConfig($urlRouterProvider, stateHelperProvider)
                 {
                     name: 'roso',
                     url:'/roso',
-                    templateUrl: 'components/mori/roso.html',
+                    templateUrl: 'app/components/mori/roso.html',
                     controller: 'ControllerRoso',
                     resolve: ['$q', '$ocLazyLoad', function($q, $ocLazyLoad)
                     {
@@ -87,7 +87,7 @@ function routesConfig($urlRouterProvider, stateHelperProvider)
                 {
                     name: '404',
                     url:'/404',
-                    templateUrl: 'components/mori/404.html',
+                    templateUrl: 'app/components/mori/404.html',
                     controller: 'ControllerNotFound',
                     resolve: ['$q', '$ocLazyLoad', function($q, $ocLazyLoad)
                     {

@@ -3,10 +3,10 @@ var pathRewriterPlugin = require('webpack-path-rewriter'),
 
 module.exports = {
     app: {
-        context: './',
+        context: __dirname,
         devtool: 'sourcemap',
         entry: {
-            app: ['./app/']
+            app: ['./app/index.js']
         },
         module: {
             loaders: [
@@ -26,7 +26,7 @@ module.exports = {
         ]
     },
     vendor: {
-        context: './dist/js',
+        context: __dirname + '/dist/js',
         entry: {
             app: [
                 'angular',
@@ -48,7 +48,7 @@ module.exports = {
         },
         output: {
             path: './dist/js',
-            filename: 'temp.vendor.bundle.js'
+            filename: 'vendor.bundle.js'
         }
     }
 };
