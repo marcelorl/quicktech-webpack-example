@@ -13,12 +13,16 @@ module.exports = {
                 {
                     test: /.*\/app\/.*\.js$/,
                     loaders: ['ng-annotate']
+                },
+                {
+                    test: /.*\/app\/.*\.css$/,
+                    loader: "style-loader!css-loader"
                 }
             ]
         },
         output: {
-            path: './dist/js',
-            publicPath: "./dist/js/",
+            path: './dist',
+            publicPath: "./dist/",
             filename: 'app-[chunkhash].bundle.js'
         },
         plugins: [
@@ -26,7 +30,7 @@ module.exports = {
         ]
     },
     vendor: {
-        context: __dirname + '/dist/js',
+        context: __dirname + '/dist',
         entry: {
             app: [
                 'angular',
@@ -47,7 +51,7 @@ module.exports = {
             mangle: false
         },
         output: {
-            path: './dist/js',
+            path: './dist',
             filename: 'vendor.bundle.js'
         }
     }

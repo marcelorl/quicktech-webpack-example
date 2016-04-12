@@ -25,10 +25,10 @@ gulp.task('build:Vendor', function(done)
 gulp.task('clean:Dist', function ()
 {
     return del([
-        './dist/js/*.js',
-        './dist/js/*.js.*',
-        './dist/js/*.json',
-        '!./dist/js/vendor*'
+        './dist/*.js',
+        './dist/*.js.*',
+        './dist/*.json',
+        '!./dist/vendor*'
     ]);
 });
 
@@ -36,8 +36,8 @@ gulp.task('build:Index', ['build:App'], function ()
 {
     var target = gulp.src('./app/index.html');
     var sources = gulp.src([
-        './dist/js/vendor*.js',
-        './dist/js/app*.bundle.js'], {read: false});
+        './dist/vendor*.js',
+        './dist/app*.bundle.js'], {read: false});
 
     return target.pipe(plugins.inject(sources))
         .pipe(gulp.dest('./.'));
