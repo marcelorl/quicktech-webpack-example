@@ -17,6 +17,16 @@ module.exports = {
                 {
                     test: /.*\/app\/.*\.css$/,
                     loader: "style-loader!css-loader"
+                },
+                {
+                    //IMAGE LOADER
+                    test: /\.(jpe?g|png|gif|svg)$/i,
+                    loader:'url?limit=8192' // inline base64 URLs for <=8k images, direct URLs for the rest
+                },
+                {
+                    test: /.*\/app\/.*\.html$/,
+                    //loader: 'ng-cache?prefix=[dir]/[dir]'
+                    loader: 'html-loader'
                 }
             ]
         },
