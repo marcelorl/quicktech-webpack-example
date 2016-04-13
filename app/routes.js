@@ -13,7 +13,7 @@ function routesConfig($urlRouterProvider, stateHelperProvider)
                 var deferred = $q.defer();
 
                 require.ensure([], function () {
-                    var mod = require('../components/main');
+                    var mod = require('./components/main');
                     $ocLazyLoad.load({
                         name: mod.name
                     });
@@ -33,7 +33,7 @@ function routesConfig($urlRouterProvider, stateHelperProvider)
                         var deferred = $q.defer();
 
                         require.ensure([], function() {
-                            var mod = require('../components/mori');
+                            var mod = require('./components/mori');
                             $ocLazyLoad.load({
                                 name: mod.name
                             });
@@ -53,7 +53,7 @@ function routesConfig($urlRouterProvider, stateHelperProvider)
                         var deferred = $q.defer();
 
                         require.ensure([], function() {
-                            var mod = require('../components/jara');
+                            var mod = require('./components/jara');
                             $ocLazyLoad.load({
                                 name: mod.name
                             });
@@ -73,7 +73,7 @@ function routesConfig($urlRouterProvider, stateHelperProvider)
                         var deferred = $q.defer();
 
                         require.ensure([], function() {
-                            var mod = require('../components/roso');
+                            var mod = require('./components/roso');
                             $ocLazyLoad.load({
                                 name: mod.name
                             });
@@ -93,7 +93,7 @@ function routesConfig($urlRouterProvider, stateHelperProvider)
                         var deferred = $q.defer();
 
                         require.ensure([], function() {
-                            var mod = require('../components/404');
+                            var mod = require('./components/404');
                             $ocLazyLoad.load({
                                 name: mod.name
                             });

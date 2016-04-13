@@ -5,7 +5,6 @@ module.exports = angular.module('App', [
     'ui.router.stateHelper',
     'oc.lazyLoad',
 
-    //Common
-    require('./config').name,
     require('./components').name
-]);
+])
+    .config(require('./routes.js'));
