@@ -1,44 +1,29 @@
-var del = require('del'),
-    gulp          = require('gulp'),
+var gulp          = require('gulp'),
     plugins       = require('gulp-load-plugins')(),
     webpack       = require('webpack'),
+    webpackServer = require('webpack-dev-server'),
 
     webpackConfig = require('../../webpack.config.js');
 
-gulp.task('build:App', ['clean:Dist'], function(done)
+gulp.task('build:App', function()
 {
-    webpack(webpackConfig.app).run(function(err)
-    {
-        if(err)
+    new webpackServer(webpack(webpackConfig),
         {
-            console.log('Error', err);
-        }
-        done();
-    });
-});
+            publicPath: webpackConfig.output.publicPath,
+            hot: true,
+            historyApiFallback: true,
+            stats:
+            {
+                colors: true
+            }
+        })
+        .listen(1337, 'localhost', function (err)
+        {
+            if (err)
+            {
+                console.log(err);
+            }
 
-gulp.task('build:Vendor', function(done)
-{
-    webpack(webpackConfig.vendor).run(done);
-});
-
-gulp.task('clean:Dist', function ()
-{
-    return del([
-        './dist/*.js',
-        './dist/*.js.*',
-        './dist/*.json',
-        '!./dist/vendor*'
-    ]);
-});
-
-gulp.task('build:Index', ['build:App'], function ()
-{
-    var target = gulp.src('./app/index.html');
-    var sources = gulp.src([
-        './dist/vendor*.js',
-        './dist/app*.bundle.js'], {read: false});
-
-    return target.pipe(plugins.inject(sources))
-        .pipe(gulp.dest('./.'));
+            console.log('Listening at localhost:1337');
+        });
 });
